@@ -1,0 +1,11 @@
+{
+  "name": "dex-contract",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Cristian Dotta <cdotta90@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.2.0",
+    "@openzeppelin/test-helpers": "^0.5.12"
+  }
+}
