@@ -91,7 +91,10 @@ contract Dex {
         external
         tokenExist(ticker)
     {
-        require(traderBalances[msg.sender][ticker] < amount, 'balance too low');
+        require(
+            traderBalances[msg.sender][ticker] >= amount,
+            'balance too low'
+        );
         traderBalances[msg.sender][ticker] -= amount;
         IERC20(tokens[ticker].tokenAddress).transfer(msg.sender, amount);
     }
