@@ -67,10 +67,7 @@ contract Dex {
         return _tokens;
     }
 
-    function addToken(bytes32 ticker, address tokenAddress)
-        external
-        onlyAdmin()
-    {
+    function addToken(bytes32 ticker, address tokenAddress) external onlyAdmin {
         tokens[ticker] = DexLib.Token(ticker, tokenAddress);
         tokenList.push(ticker);
     }
@@ -113,7 +110,7 @@ contract Dex {
         } else {
             require(
                 traderBalances[msg.sender][DAI] >= amount * price,
-                'token balance too low'
+                'dai balance too low'
             );
         }
         DexLib.Order[] storage orders = orderBook[ticker][uint256(side)];
@@ -211,7 +208,7 @@ contract Dex {
 
         i = 0;
         while (i < orders.length && orders[i].filled == orders[i].amount) {
-            for (uint256 j; j < orders.length; j++) {
+            for (uint256 j = i; j < orders.length - 1; j++) {
                 orders[j] = orders[j + 1];
             }
             orders.pop();
